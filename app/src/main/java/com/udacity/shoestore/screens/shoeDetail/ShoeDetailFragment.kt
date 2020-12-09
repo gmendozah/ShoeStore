@@ -18,6 +18,7 @@ class ShoeDetailFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.shoe_detail_fragment, container, false)
         viewModel = ViewModelProvider(this).get(ShoeDetailViewModel::class.java)
+
         setHasOptionsMenu(true)
         return binding.root
     }

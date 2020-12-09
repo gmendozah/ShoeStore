@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.ShoeListingFragmentBinding
+import timber.log.Timber
 
 class ShoeListingFragment : Fragment() {
 
@@ -20,6 +22,21 @@ class ShoeListingFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.shoe_listing_fragment, container, false)
         viewModel = ViewModelProvider(this).get(ShoeListingViewModel::class.java)
+
+        binding.shoeListingViewModel = viewModel
+
+        binding.lifecycleOwner = this
+
+        viewModel.shoeList.observe(viewLifecycleOwner, Observer { shoeList ->
+            Timber.i(shoeList.toString())
+            var listText: String = ""
+            for (shoe in shoeList) {
+                listText += "Name: ${shoe.name}\nSize: ${shoe.size}\nCompany: ${shoe.company}\nDescription: ${shoe.name}\n\n"
+            }
+            binding.textItemList.text = listText
+        })
+
+
         binding.shoeListNextButton.setOnClickListener { navigateToDetailScreen(it) }
         return binding.root
     }

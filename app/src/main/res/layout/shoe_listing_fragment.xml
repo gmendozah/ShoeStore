@@ -2,25 +2,37 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".screens.shoeListing.ShoeListingFragment">
 
-        <TextView
+    <data>
+        <variable
+            name="shoeListingViewModel"
+            type="com.udacity.shoestore.screens.shoeListing.ShoeListingViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello" />
+            android:orientation="vertical"
+            android:padding="@dimen/componentPadding"
+            tools:context=".screens.shoeListing.ShoeListingFragment">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/shoeListNextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="@dimen/componentPadding"
-            android:contentDescription="@string/addButtonContentDescription"
-            android:src="@drawable/ic_add" />
+            <TextView
+                android:id="@+id/textItemList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    </LinearLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/shoeListNextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="@dimen/componentPadding"
+                android:contentDescription="@string/addButtonContentDescription"
+                android:src="@drawable/ic_add" />
+        </LinearLayout>
+    </ScrollView>
 </layout>
