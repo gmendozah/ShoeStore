@@ -17,4 +17,14 @@
     <string name="instructionsTitle">Instructions</string>
     <string name="shoeListingTitle">Shoe Listing</string>
     <string name="shoeDetailsTitle">Shoe Detail</string>
+    <string name="size">Size</string>
+    <string name="name">Name</string>
+    <string name="nameHint">Enter your name...</string>
+    <string name="sizeHint">Enter shoe size...</string>
+    <string name="companyHint">Enter company...</string>
+    <string name="company">Company</string>
+    <string name="description">Description</string>
+    <string name="descriptionHint">Enter description...</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 </resources>

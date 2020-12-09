@@ -3,15 +3,117 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".screens.shoeDetail.ShoeDetailFragment">
+        android:padding="@dimen/componentPadding">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello" />
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            app:layout_constraintBottom_toTopOf="@+id/nameEditText"
+            app:layout_constraintStart_toStartOf="@+id/nameEditText"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    </FrameLayout>
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/nameHint"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/sizeTextView"
+            app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/sizeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/size"
+            app:layout_constraintBottom_toTopOf="@+id/sizeEditText"
+            app:layout_constraintStart_toStartOf="@+id/sizeEditText"
+            app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
+
+        <EditText
+            android:id="@+id/sizeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/sizeHint"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toTopOf="@+id/companyTextView"
+            app:layout_constraintTop_toBottomOf="@+id/sizeTextView"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/companyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/company"
+            app:layout_constraintBottom_toTopOf="@+id/companynEditText"
+            app:layout_constraintStart_toStartOf="@+id/companynEditText"
+            app:layout_constraintTop_toBottomOf="@+id/sizeEditText" />
+
+        <EditText
+            android:id="@+id/descriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@string/descriptionHint"
+            android:inputType="textMultiLine"
+            app:layout_constraintBottom_toTopOf="@+id/cancelButton"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTextview"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/descriptionTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/description"
+            app:layout_constraintBottom_toTopOf="@+id/descriptionEditText"
+            app:layout_constraintStart_toStartOf="@+id/descriptionEditText"
+            app:layout_constraintTop_toBottomOf="@+id/companynEditText" />
+
+        <EditText
+            android:id="@+id/companynEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/companyHint"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/descriptionTextview"
+            app:layout_constraintTop_toBottomOf="@+id/companyTextView"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/componentPadding"
+            android:text="@android:string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/saveButton"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionEditText" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/save"
+            android:theme="@style/primaryButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionEditText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
