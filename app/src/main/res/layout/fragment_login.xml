@@ -1,14 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/componentPadding"
+    android:layout_marginStart="@dimen/componentPadding"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".screens.login.LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/email_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/componentPadding"
+        android:layout_weight="1"
+        android:text="@string/emailLabel"
+        app:layout_constraintBottom_toTopOf="@+id/email_edit_text"
+        app:layout_constraintStart_toStartOf="@+id/email_edit_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.47000003"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/email_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/componentPadding"
+        android:layout_marginEnd="@dimen/componentPadding"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/password_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_textview" />
+
+    <TextView
+        android:id="@+id/password_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/componentPadding"
+        android:layout_marginTop="@dimen/componentPadding"
+        android:layout_weight="1"
+        android:text="@string/passwordLabel"
+        app:layout_constraintBottom_toTopOf="@+id/password_edit_text"
+        app:layout_constraintStart_toStartOf="@+id/password_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/email_edit_text" />
+
+    <EditText
+        android:id="@+id/password_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/componentPadding"
+        android:layout_marginEnd="@dimen/componentPadding"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/logInExistingButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_textview" />
+
+    <Button
+        android:id="@+id/logInNewButton"
+        style="@style/primaryButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/componentPadding"
+        android:layout_marginTop="@dimen/componentPadding"
+        android:layout_marginEnd="@dimen/componentPadding"
+        android:layout_weight="1"
+        android:text="@string/newLogin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logInExistingButton" />
+
+    <Button
+        android:id="@+id/logInExistingButton"
+        style="@style/primaryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/componentPadding"
+        android:layout_marginTop="@dimen/componentPadding"
+        android:layout_marginEnd="@dimen/componentPadding"
+        android:layout_weight="1"
+        android:text="@string/loginExistingAccount"
+        app:layout_constraintBottom_toTopOf="@+id/logInNewButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_edit_text" />
+</androidx.constraintlayout.widget.ConstraintLayout>
