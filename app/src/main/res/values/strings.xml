@@ -12,4 +12,9 @@
     <string name="shoeListing">Shoe Listing</string>
     <string name="logout">Logout</string>
     <string name="addButtonContentDescription">This button goes to the shoe detail screen</string>
+    <string name="login">Log In</string>
+    <string name="welcome">Welcome!</string>
+    <string name="instructionsTitle">Instructions</string>
+    <string name="shoeListingTitle">Shoe Listing</string>
+    <string name="shoeDetailsTitle">Shoe Detail</string>
 </resources>
