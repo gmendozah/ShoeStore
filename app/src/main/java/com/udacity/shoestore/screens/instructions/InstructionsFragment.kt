@@ -16,6 +16,7 @@ class InstructionsFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentInstructionsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_instructions, container, false)
+
         binding.instructionsNextBtn.setOnClickListener { navigateToShoeListingScreen(it) }
         return binding.root
     }

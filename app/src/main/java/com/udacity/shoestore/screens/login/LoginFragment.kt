@@ -1,10 +1,8 @@
 package com.udacity.shoestore.screens.login
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.udacity.shoestore.R
@@ -19,6 +17,7 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding: FragmentLoginBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        setHasOptionsMenu(true)
         binding.logInExistingButton.setOnClickListener {
             navigateToWelcomeScreen(it)
         }
@@ -26,6 +25,11 @@ class LoginFragment : Fragment() {
             navigateToWelcomeScreen(it)
         }
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     private fun navigateToWelcomeScreen(view: View) = view.findNavController()
