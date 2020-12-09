@@ -6,4 +6,6 @@
     <string name="passwordLabel">Password</string>
     <string name="loginExistingAccount">Log In With An Existing Account</string>
     <string name="newLogin">Create A New Log In</string>
+    <string name="enterEmailHint">Enter your email...</string>
+    <string name="enterPasswordHint">Enter your password...</string>
 </resources>

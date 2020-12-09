@@ -13,63 +13,66 @@
         tools:context=".screens.login.LoginFragment">
 
         <TextView
-            android:id="@+id/email_textview"
+            android:id="@+id/emailTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/componentPadding"
             android:layout_weight="1"
             android:text="@string/emailLabel"
-            app:layout_constraintBottom_toTopOf="@+id/email_edit_text"
-            app:layout_constraintStart_toStartOf="@+id/email_edit_text"
+            app:layout_constraintBottom_toTopOf="@+id/emailEditText"
+            app:layout_constraintStart_toStartOf="@+id/emailEditText"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.47000003"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <EditText
-            android:id="@+id/email_edit_text"
+            android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/componentPadding"
             android:layout_marginEnd="@dimen/componentPadding"
             android:layout_weight="1"
             android:ems="10"
+            android:hint="@string/enterEmailHint"
             android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toTopOf="@+id/password_textview"
+            app:layout_constraintBottom_toTopOf="@+id/passwordTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/emailTextView"
+            android:autofillHints="" />
 
         <TextView
-            android:id="@+id/password_textview"
+            android:id="@+id/passwordTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/componentPadding"
             android:layout_marginTop="@dimen/componentPadding"
             android:layout_weight="1"
             android:text="@string/passwordLabel"
-            app:layout_constraintBottom_toTopOf="@+id/password_edit_text"
-            app:layout_constraintStart_toStartOf="@+id/password_edit_text"
-            app:layout_constraintTop_toBottomOf="@+id/email_edit_text" />
+            app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
+            app:layout_constraintStart_toStartOf="@+id/passwordEditText"
+            app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
 
         <EditText
-            android:id="@+id/password_edit_text"
+            android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/componentPadding"
             android:layout_marginEnd="@dimen/componentPadding"
             android:layout_weight="1"
             android:ems="10"
+            android:hint="@string/enterPasswordHint"
             android:inputType="textPassword"
             app:layout_constraintBottom_toTopOf="@+id/logInExistingButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
+            android:autofillHints="" />
 
         <Button
             android:id="@+id/logInNewButton"
-            style="@style/primaryButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/componentPadding"
@@ -85,7 +88,6 @@
 
         <Button
             android:id="@+id/logInExistingButton"
-            style="@style/primaryButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/componentPadding"
@@ -97,6 +99,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password_edit_text" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
