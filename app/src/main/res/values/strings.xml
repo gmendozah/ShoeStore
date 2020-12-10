@@ -19,12 +19,17 @@
     <string name="shoeDetailsTitle">Shoe Detail</string>
     <string name="size">Size</string>
     <string name="name">Name</string>
-    <string name="nameHint">Enter your name...</string>
+    <string name="nameHint">Enter shoe name...</string>
     <string name="sizeHint">Enter shoe size...</string>
-    <string name="companyHint">Enter company...</string>
+    <string name="companyHint">Enter shoe company...</string>
     <string name="company">Company</string>
     <string name="description">Description</string>
-    <string name="descriptionHint">Enter description...</string>
+    <string name="descriptionHint">Enter shoe description...</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="nameValidation">Shoe name cannot be empty</string>
+    <string name="sizeValidation">Shoe size cannot be empty</string>
+    <string name="sizeValidationValue">Shoe size cannot be less or equal than 0</string>
+    <string name="companyValidation">Shoe company cannot be empty</string>
+    <string name="descriptionValidation">Shoe description cannot be empty</string>
 </resources>
