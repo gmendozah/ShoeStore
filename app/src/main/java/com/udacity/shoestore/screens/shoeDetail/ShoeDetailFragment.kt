@@ -6,9 +6,12 @@ import android.view.*
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.ShoeDetailFragmentBinding
+import androidx.lifecycle.Observer
+import com.udacity.shoestore.models.Shoe
+import timber.log.Timber
 
 class ShoeDetailFragment : Fragment() {
     private lateinit var binding: ShoeDetailFragmentBinding
@@ -22,39 +25,32 @@ class ShoeDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ShoeDetailViewModel::class.java)
         setHasOptionsMenu(true)
 
+        binding.shoeDetailViewModel = viewModel
+        binding.setLifecycleOwner(this)
 
-        binding.cancelButton.setOnClickListener { navigateToShoeList(it) }
-        binding.saveButton.setOnClickListener { validateForm() }
+        binding.cancelButton.setOnClickListener { navigateToShoeList() }
+        binding.saveButton.setOnClickListener {
+            viewModel.onAddShoe()
+        }
+        viewModel.snackbarMessage.observe(viewLifecycleOwner, Observer {
+            if (it != null && it != 0) {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            }
+        })
+        viewModel.eventAddShoe.observe(viewLifecycleOwner, Observer { event ->
+            if (event) {
+                val newShoe = viewModel.saveShoe()
+                if(newShoe != null) {
+                    navigateToShoeList(viewModel.saveShoe())
+                }
+                viewModel.onAddShoeComplete()
+            }
+        })
+
         return binding.root
     }
 
-    private fun validateForm(): Boolean {
-        when {
-            binding.nameEditText.text.isEmpty() -> {
-                Toast.makeText(context, R.string.nameValidation, Toast.LENGTH_SHORT).show()
-                return false
-            }
-            binding.sizeEditText.text.isEmpty() -> {
-                Toast.makeText(context, R.string.sizeValidation, Toast.LENGTH_SHORT).show()
-                return false
-            }
-            binding.companynEditText.text.isEmpty() -> {
-                Toast.makeText(context, R.string.companyValidation, Toast.LENGTH_SHORT).show()
-                return false
-            }
-            binding.descriptionEditText.text.isEmpty() -> {
-                Toast.makeText(context, R.string.descriptionValidation, Toast.LENGTH_SHORT).show()
-                return false
-            }
-            binding.sizeEditText.text.toString().toDouble() <= 0 -> {
-                Toast.makeText(context, R.string.sizeValidationValue, Toast.LENGTH_SHORT).show()
-                return false
-            }
-            else -> return true
-        }
-    }
-
-    private fun navigateToShoeList(view: View) = view.findNavController().navigate(ShoeDetailFragmentDirections.actionShoeDetailFragmentToShoeListingFragment())
+    private fun navigateToShoeList(shoe: Shoe? = null) = findNavController().navigate(ShoeDetailFragmentDirections.actionShoeDetailFragmentToShoeListingFragment(shoe))
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()

@@ -25,5 +25,5 @@ class InstructionsFragment : Fragment() {
     }
 
     private fun navigateToShoeListingScreen(view: View) = view.findNavController()
-            .navigate(InstructionsFragmentDirections.actionInstructionsFragmentToShoeListingFragment())
+            .navigate(InstructionsFragmentDirections.actionInstructionsFragmentToShoeListingFragment(null))
 }
