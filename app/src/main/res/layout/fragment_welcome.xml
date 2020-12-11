@@ -13,12 +13,15 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment" />
+            android:text="@string/welcome"
+            android:textSize="34sp"
+            android:textStyle="normal"
+            android:gravity="center"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment" />
+            android:text="@string/welcome_description" />
 
         <Button
             android:id="@+id/welcomeNextBtn"
