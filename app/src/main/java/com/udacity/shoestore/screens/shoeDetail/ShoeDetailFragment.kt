@@ -10,47 +10,45 @@ import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.ShoeDetailFragmentBinding
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import com.udacity.shoestore.models.Shoe
-import timber.log.Timber
 
 class ShoeDetailFragment : Fragment() {
     private lateinit var binding: ShoeDetailFragmentBinding
     private lateinit var viewModel: ShoeDetailViewModel
+    private lateinit var viewModelFactory: ShoeDetailViewModelFactory
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.shoe_detail_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(ShoeDetailViewModel::class.java)
+
+        val shoeDetailFragmentArgs by navArgs<ShoeDetailFragmentArgs>()
+        viewModelFactory = ShoeDetailViewModelFactory(shoeDetailFragmentArgs.shoeListDetail)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ShoeDetailViewModel::class.java)
+
         setHasOptionsMenu(true)
 
         binding.shoeDetailViewModel = viewModel
         binding.setLifecycleOwner(this)
 
-        binding.cancelButton.setOnClickListener { navigateToShoeList() }
+        binding.cancelButton.setOnClickListener { navigateToShoeList(shoeList = viewModel.shoeList.value?.toTypedArray()) }
         binding.saveButton.setOnClickListener {
-            viewModel.onAddShoe()
+            if (viewModel.saveShoe() == 0) {
+                navigateToShoeList(shoeList = viewModel.shoeList.value?.toTypedArray())
+            }
         }
-        viewModel.snackbarMessage.observe(viewLifecycleOwner, Observer {
+        viewModel.errorResource.observe(viewLifecycleOwner, Observer {
             if (it != null && it != 0) {
                 Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-            }
-        })
-        viewModel.eventAddShoe.observe(viewLifecycleOwner, Observer { event ->
-            if (event) {
-                val newShoe = viewModel.saveShoe()
-                if(newShoe != null) {
-                    navigateToShoeList(viewModel.saveShoe())
-                }
-                viewModel.onAddShoeComplete()
             }
         })
 
         return binding.root
     }
 
-    private fun navigateToShoeList(shoe: Shoe? = null) = findNavController().navigate(ShoeDetailFragmentDirections.actionShoeDetailFragmentToShoeListingFragment(shoe))
+    private fun navigateToShoeList(shoeList: Array<Shoe>? = null) = findNavController().navigate(ShoeDetailFragmentDirections.actionShoeDetailFragmentToShoeListingFragment(shoeList))
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()

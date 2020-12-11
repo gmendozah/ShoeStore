@@ -2,12 +2,13 @@ package com.udacity.shoestore.screens.shoeDetail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.udacity.shoestore.R
 import com.udacity.shoestore.models.Shoe
 import timber.log.Timber
 
-class ShoeDetailViewModel : ViewModel() {
+class ShoeDetailViewModel(shoeList: Array<Shoe>) : ViewModel() {
     // Two-way databinding, exposing MutableLiveData
     val name = MutableLiveData<String>()
 
@@ -24,21 +25,31 @@ class ShoeDetailViewModel : ViewModel() {
     val eventAddShoe: LiveData<Boolean>
         get() = _eventAddShoe
 
-    private val _snackbarText = MutableLiveData<Int>()
-    val snackbarMessage: LiveData<Int>
-        get() = _snackbarText
+    private val _errorResource = MutableLiveData<Int>()
+    val errorResource: LiveData<Int>
+        get() = _errorResource
 
-    fun saveShoe(): Shoe? {
+    private val _shoeList = MutableLiveData<MutableList<Shoe>>()
+    val shoeList: LiveData<MutableList<Shoe>>
+        get() = _shoeList
+
+
+    init {
+        _shoeList.value = shoeList.toMutableList()
+    }
+
+    fun saveShoe(): Int {
         val currentName = name.value
         val currentSize = size.value
         val currentCompany = company.value
         val currentDescription = description.value
-        _snackbarText.value = validateForm()
-        return if (_snackbarText.value == 0) {
-            Shoe(name = currentName.toString(), company = currentCompany.toString(), size = currentSize.toString().toDouble(), description = currentDescription.toString())
-        } else {
-            null
+        _errorResource.value = validateForm()
+        if (_errorResource.value == 0) {
+            _shoeList.value?.add(
+                    Shoe(name = currentName.toString(), company = currentCompany.toString(), size = currentSize.toString().toDouble(), description = currentDescription.toString())
+            )
         }
+        return _errorResource.value ?: 0
     }
 
     private fun validateForm(): Int {
@@ -60,13 +71,5 @@ class ShoeDetailViewModel : ViewModel() {
             }
             else -> 0
         }
-    }
-
-    fun onAddShoe() {
-        _eventAddShoe.value = true
-    }
-
-    fun onAddShoeComplete() {
-        _eventAddShoe.value = false
     }
 }
