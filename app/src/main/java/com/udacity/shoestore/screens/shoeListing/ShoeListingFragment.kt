@@ -21,7 +21,7 @@ class ShoeListingFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.shoe_listing_fragment, container, false)
-        binding.apply {
+        with(binding) {
             shoeListingViewModel = viewModel
             binding.lifecycleOwner = this@ShoeListingFragment
             shoeListNextButton.setOnClickListener {
