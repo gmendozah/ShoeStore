@@ -21,12 +21,13 @@ class ShoeListingFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.shoe_listing_fragment, container, false)
-        val shoeListingFragmentArgs by navArgs<ShoeListingFragmentArgs>()
-        if (shoeListingFragmentArgs.shoe != null) {
-            viewModel.addShoe(shoeListingFragmentArgs.shoe!!)
+        binding.apply {
+            shoeListingViewModel = viewModel
+            binding.lifecycleOwner = this@ShoeListingFragment
+            shoeListNextButton.setOnClickListener {
+                navigateToDetailScreen()
+            }
         }
-        binding.shoeListingViewModel = viewModel
-        binding.lifecycleOwner = this
 
         viewModel.shoeList.observe(viewLifecycleOwner, Observer { shoeList ->
             var listText = ""
@@ -35,11 +36,6 @@ class ShoeListingFragment : Fragment() {
             }
             binding.textItemList.text = listText
         })
-
-
-        binding.shoeListNextButton.setOnClickListener {
-            navigateToDetailScreen()
-        }
         return binding.root
     }
 
