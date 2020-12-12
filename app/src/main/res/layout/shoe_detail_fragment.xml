@@ -129,6 +129,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/save"
             android:theme="@style/primaryButton"
+            android:onClick="@{() -> shoeDetailViewModel.saveShoe()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descriptionEditText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
