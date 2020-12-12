@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--
+    I have used LinearLayout with vertical orientation because it was easier to show both TextViews and the button
+    -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
